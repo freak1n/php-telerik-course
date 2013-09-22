@@ -5,8 +5,9 @@ $response = array();
 
 // normalize
 $group_id = (int)$_GET['group_id'];
+
 // validation
-if ( ! array_key_exists($group_id, $groups))
+if ( ! array_key_exists($group_id, $groups) && $group_id != -1)
 {
 	$response = array(
 		'status' => 'error',
@@ -35,7 +36,7 @@ else
 	foreach ($file_data as $line) 
 	{
 		$columns = explode('!', $line);
-		if ($columns[2] == $group_id)
+		if ($columns[2] == $group_id || $group_id == -1)
 		{
 			$filtered_data[] = array(
 				'product' => $columns[0],
