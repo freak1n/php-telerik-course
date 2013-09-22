@@ -1,4 +1,4 @@
-<?php $groups = array(1 => 'Food', 2 => 'Cigarettes', 3 => 'Parties', 4 => 'Geeky Toys', 5 => 'Other'); ?>
+<?php require_once 'includes/vars.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>

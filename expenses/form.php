@@ -2,7 +2,6 @@
 	mb_internal_encoding('UTF-8');
 	$page_title = 'Add new expense'; 
 	require_once 'includes/header.php';
-
 	if ($_POST)
 	{
 		// normalize
@@ -41,7 +40,7 @@
 
 		if ( ! $error) 
 		{
-			$result = $product . '!' . $price . '!' . $selected_group . date() . "\n";
+			$result = $product . '!' . $price . '!' . $selected_group . '!' . date('d F Y') . "\n";
 			if (file_put_contents('data.txt', $result, FILE_APPEND))
 			{
 				echo 'The contact was saved successful';
@@ -52,7 +51,7 @@
 	<a href="index.php">To the list</a>
 	<form action='' method='POST'>
 		Name: <input type="text" name="product" /><br />
-		Price: $ <input type="number" name="price-dollars" min='0'/>.<input type="number" name="price-coins" min='0' /><br />
+		Price: $ <input type="number" name="price-dollars" min='0'/>.<input type="number" name="price-coins" min='0' step='10' /><br />
 		Category: 
 		<select name="group">
 			<?php foreach ($groups as $id => $group) : ?>
