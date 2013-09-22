@@ -33,7 +33,7 @@
 					<td><?= $columns[0] ?></td>
 					<td><?= number_format($columns[1], 2) ?> $</td>
 					<td><?= $groups[trim($columns[2])] ?></td>	
-					<td><?= $columns[3] ?></td>
+					<td><?= date("d F Y", (int)$columns[3]) ?></td>
 				</tr>
 		<?php 
 			endforeach;
@@ -43,7 +43,7 @@
 		<tfoot>
 			<tr>
 				<td>-----</td>
-				<td id="total-price-cell"><?= $total_price; ?> $</td>
+				<td id="total-price-cell"><?= number_format($total_price, 2); ?> $</td>
 				<td>-----</td>
 				<td>-----</td>
 			</tr>

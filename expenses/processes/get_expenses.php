@@ -40,9 +40,9 @@ else
 		{
 			$filtered_data[] = array(
 				'product' => $columns[0],
-				'price' => $columns[1],
+				'price' => number_format($columns[1], 2),
 				'group' => $groups[$columns[2]],
-				'date' => $columns[3],
+				'date' => date("d F Y", (int)$columns[3]),
 			);
 			$total_price += $columns[1];
 		}
@@ -51,7 +51,7 @@ else
 	$response = array(
 		'status' => 'ok',
 		'data' => $filtered_data,
-		'total_price' => $total_price, 
+		'total_price' => number_format($total_price, 2), 
 	);
 
 	echo json_encode($response);

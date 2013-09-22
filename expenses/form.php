@@ -40,7 +40,7 @@
 
 		if ( ! $error) 
 		{
-			$result = $product . '!' . $price . '!' . $selected_group . '!' . date('d F Y') . "\n";
+			$result = $product . '!' . $price . '!' . $selected_group . '!' . time() . "\n";
 			if (file_put_contents('data.txt', $result, FILE_APPEND))
 			{
 				echo 'The contact was saved successful';
