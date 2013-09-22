@@ -1,0 +1,12 @@
+a {
+	font-size: 20px;
+	color: green;
+}
+table {
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+table tr td {
+	padding: 5px 10px 5px 10px;
+	border: 1px solid green;
+}
