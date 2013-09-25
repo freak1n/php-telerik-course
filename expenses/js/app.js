@@ -11,16 +11,34 @@ $(document).ready(function() {
 					var html = '';
 					$(response_json.data).each(function(i, el) {
 						html += 				
-							'<tr>' +
+							'<tr data-id="' + el.id + '">' +
 								'<td>'+ el.product +'</td>' +
 								'<td>'+ el.price + ' $</td>' +
 								'<td>'+ el.group +'</td>' +	
 								'<td>'+ el.date +'</td>' +
+								'<td><a href="#" class="delete-btn">Delete</a></td>' +  
 							'</tr>';				
 					});
 
 					$('#expenses-table tbody').html(html);
 					$('#total-price-cell').text(response_json.total_price + ' $')
+				}
+			}
+		});
+	});
+
+	$('body').on('click', '.delete-btn', function (e) {
+		var current_id = $(this).parents('tr').data('id');
+		$.ajax({
+			url: 'processes/delete_expense.php?expence_id='+current_id,
+			type: 'GET',
+			dataType: 'json', 
+			complete: function (response) {
+				var response_json = response.responseJSON;
+				if (response_json.status == 'ok')
+				{
+					console.log(this);
+					$("tr[data-id='"+current_id+"']").remove();
 				}
 			}
 		});
