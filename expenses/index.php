@@ -32,7 +32,7 @@
 		?>
 				<tr data-id="<?= trim($columns[3]);?>">
 					<td><?= $columns[0] ?></td>
-					<td class="price-cell"><?= number_format($columns[1], 2) ?> $</td>
+					<td class="price-cell"><span><?= number_format($columns[1], 2) ?></span> $</td>
 					<td><?= $groups[trim($columns[2])] ?></td>	
 					<td><?= trim(date("d F Y", (int)$columns[3])) ?></td>
 					<td><a href="#" class="delete-btn">Delete</a></td>
@@ -45,7 +45,7 @@
 		<tfoot>
 			<tr>
 				<td>-----</td>
-				<td id="total-price-cell"><?= number_format($total_price, 2); ?> $</td>
+				<td id="total-price-cell"><span><?= number_format($total_price, 2); ?></span> $</td>
 				<td>-----</td>
 				<td>-----</td>
 				<td>-----</td>

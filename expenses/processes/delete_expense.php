@@ -35,6 +35,7 @@ else
 		$columns = explode('!', $line);
 		if (trim($columns[3]) == $expence_id)
 		{	
+			
 			unset($file_data[$key]);
 			$str_data = implode('', $file_data);
 			file_put_contents('../data.txt', $str_data);
@@ -44,6 +45,7 @@ else
 			);
 
 			echo json_encode($response);
+			break;
 			exit;			
 		}	
 	}
