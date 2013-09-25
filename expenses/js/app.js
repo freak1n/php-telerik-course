@@ -38,11 +38,7 @@ $(document).ready(function() {
 				var response_json = response.responseJSON;
 				if (response_json.status == 'ok')
 				{
-					var current_total_price = $('#total-price-cell span').text();
-					var price_of_deleted_el = $("tr[data-id='"+current_id+"'] .price-cell span").text();
-					var new_total_price = current_total_price - price_of_deleted_el;
-					console.log(price_of_deleted_el);
-					$('#total-price-cell span').text(new_total_price);
+					$('#total-price-cell span').text(response_json.total_price);
 					$("tr[data-id='"+current_id+"']").remove();
 				}
 			}
