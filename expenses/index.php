@@ -18,6 +18,7 @@
 				<td>Group</td>
 				<td>Date</td>
 				<td></td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -35,6 +36,7 @@
 					<td class="price-cell"><span><?= number_format($columns[1], 2) ?></span> $</td>
 					<td><?= $groups[trim($columns[2])] ?></td>	
 					<td><?= trim(date("d F Y", (int)$columns[3])) ?></td>
+					<td><a href="form.php?expense_id=<?= $columns[3] ?>" >Update</a></td>
 					<td><a href="#" class="delete-btn">Delete</a></td>
 				</tr>
 		<?php 
@@ -46,6 +48,7 @@
 			<tr>
 				<td>-----</td>
 				<td id="total-price-cell"><span><?= number_format($total_price, 2); ?></span> $</td>
+				<td>-----</td>
 				<td>-----</td>
 				<td>-----</td>
 				<td>-----</td>

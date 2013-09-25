@@ -16,12 +16,13 @@ $(document).ready(function() {
 								'<td>'+ el.price + ' $</td>' +
 								'<td>'+ el.group +'</td>' +	
 								'<td>'+ el.date +'</td>' +
+								'<td><a href="form.php?expense_id='+ el.id +'" >Update</a></td>' +
 								'<td><a href="#" class="delete-btn">Delete</a></td>' +  
 							'</tr>';				
 					});
 
 					$('#expenses-table tbody').html(html);
-					$('#total-price-cell').text(response_json.total_price + ' $')
+					$('#total-price-cell span').text(response_json.total_price)
 				}
 			}
 		});
@@ -30,6 +31,7 @@ $(document).ready(function() {
 	$('body').on('click', '.delete-btn', function (e) {
 		var current_id = $(this).parents('tr').data('id');
 		var current_total_price = $('#total-price-cell span').text();
+		console.log(current_total_price);
 		$.ajax({
 			url: 'processes/delete_expense.php?expence_id='+current_id+'&current_total_price='+current_total_price,
 			type: 'GET',

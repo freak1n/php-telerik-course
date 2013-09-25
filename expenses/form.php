@@ -2,6 +2,35 @@
 	mb_internal_encoding('UTF-8');
 	$page_title = 'Add new expense'; 
 	require_once 'includes/header.php';
+	require_once 'includes/functions.php';
+
+	if (isset($_GET['expense_id']))
+	{
+		$expense_data = get_expense_by_id($_GET['expense_id']);
+		$price = explode('.', $expense_data['price']);
+	}
+	else
+	{	
+		$price = null;
+		$expense_data = null;
+	}
+?>
+	<a href="index.php">To the list</a>
+	<form action='' method='POST'>
+		Name: <input type="text" name="product" value="<?= $expense_data['product']; ?>" /><br />
+		Price: $ <input type="number" name="price-dollars" min='0' value="<?= isset($price[0]) ? $price[0] : '' ?>"/>.<input type="number" name="price-coins" min='0' step='10' value="<?= isset($price[1]) ? $price[1] : '' ?>"  /><br />
+		Category: 
+		<select name="group">
+			<?php foreach ($groups as $id => $group) : ?>
+				<option value="<?= $id ?>" <?= $expense_data['group'] == $id ? 'selected' : '' ?> ><?= $group; ?></option>
+			<?php endforeach ?>
+		</select>
+		<input type="hidden" />
+		<input type="submit" value="<?= isset($_GET['expense_id']) ? 'Update' : 'Add' ?>" /><br />
+	</form>
+<?php require_once 'includes/footer.php'; ?>
+
+<?php 
 	if ($_POST)
 	{
 		// normalize
@@ -41,23 +70,21 @@
 		if ( ! $error) 
 		{
 			$result = $product . '!' . $price . '!' . $selected_group . '!' . time() . "\n";
-			if (file_put_contents('data.txt', $result, FILE_APPEND))
+			if (isset($_GET['expense_id']))
 			{
-				echo 'The contact was saved successful';
+				if(update_expense($_GET['expense_id'], $result))
+				{
+					echo 'The product was updated successful';
+					header('Location: index.php');
+				}
+			}
+			else
+			{
+				if (file_put_contents('data.txt', $result, FILE_APPEND))
+				{
+					echo 'The product was added successful';
+				}
 			}
 		}
 	}
 ?>
-	<a href="index.php">To the list</a>
-	<form action='' method='POST'>
-		Name: <input type="text" name="product" /><br />
-		Price: $ <input type="number" name="price-dollars" min='0'/>.<input type="number" name="price-coins" min='0' step='10' /><br />
-		Category: 
-		<select name="group">
-			<?php foreach ($groups as $id => $group) : ?>
-				<option value="<?= $id ?>"><?= $group; ?></option>
-			<?php endforeach ?>
-		</select>
-		<input type="submit" value="Add" /><br />
-	</form>
-<?php require_once 'includes/footer.php'; ?>

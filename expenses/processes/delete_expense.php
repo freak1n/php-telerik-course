@@ -5,7 +5,6 @@ $response = array();
 // normalize
 $expence_id = $_GET['expence_id'];
 $current_total_price = (float)$_GET['current_total_price'];
-
 // validation
 if (mb_strlen($expence_id) < 10) 
 {
