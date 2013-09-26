@@ -55,7 +55,7 @@
 			$error = TRUE;
 		}
 
-		if ($price < 0) 
+		if ($price <= 0) 
 		{
 			echo '<p>Price must bigger than 0</p>';
 			$error = TRUE;
