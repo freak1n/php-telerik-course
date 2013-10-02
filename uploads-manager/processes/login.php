@@ -7,8 +7,9 @@ $post = array_map('trim', $_POST);
 
 if (check_user_credentials($post))
 {
-	header('Location: ../uploads_list.php');
 	$_SESSION['is_logged'] = TRUE;
+	$_SESSION['current_user'] = $post['username'];
+	header('Location: ../uploads_list.php');
 	exit;
 }
 else

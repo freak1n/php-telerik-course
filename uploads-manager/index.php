@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	var_dump($_SESSION);
+	
 	if (isset($_SESSION['is_logged']) AND $_SESSION['is_logged']) 
 	{
 		header('Location: uploads_list.php');

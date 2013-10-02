@@ -35,6 +35,8 @@ $new_user = $post['username'] . '!' . sha1($user_salt . $post['password'] . $use
 if (file_put_contents('../users.txt', $new_user, FILE_APPEND)) 
 {
 	$_SESSION['is_logged'] = TRUE;
+	$_SESSION['current_user'] = $post['username'];
+	mkdir('../uploads/' . $post['username']);
 	header('Location: ../uploads_list.php');
 	exit;
 }
