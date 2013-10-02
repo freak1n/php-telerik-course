@@ -16,8 +16,9 @@
 	}
 ?>
 	<a href="index.php">To the list</a>
-	<form action='' method='POST'>
+	<form action='' method='POST' enctype="multipart/form-data">
 		Name: <input type="text" name="product" value="<?= $expense_data['product']; ?>" /><br />
+		Photo: <input type="file" name="photo" /><br />
 		Price: $ <input type="number" name="price-dollars" min='0' value="<?= isset($price[0]) ? $price[0] : '' ?>"/>.<input type="number" name="price-coins" min='0' step='10' value="<?= isset($price[1]) ? $price[1] : '' ?>"  /><br />
 		Category: 
 		<select name="group">
@@ -82,8 +83,22 @@
 			{
 				if (file_put_contents('data.txt', $result, FILE_APPEND))
 				{
-					echo 'The product was added successful';
+					echo 'The product was added successful<br />';
 				}
+			}
+		}
+
+		// work with file
+
+		if (count($_FILES) > 0) 
+		{
+			if (move_uploaded_file($_FILES['photo']['tmp_name'], 'uploads' . DIRECTORY_SEPARATOR . $_FILES['photo']['name'])) 
+			{
+				echo 'File is uploaded successful<br />';
+			}
+			else
+			{
+				echo 'Error<br />';
 			}
 		}
 	}
