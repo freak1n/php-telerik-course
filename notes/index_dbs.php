@@ -32,3 +32,13 @@ else
 	echo mysqli_error($connection);
 }
 
+$q1 = "SELECT user_name AS un, age FROM users WHERE age>=18 AND is_active=1 ORDER BY age DESC LIMIT 0, 10";
+
+$q2 = "UPDATE users SET is_active = 1 WHERE age>=18 AND age<24";
+
+if ($q->num_rows > 0 ) {
+	# check is empty
+}
+
+$q3 = "DELETE FROM users WHERE age>50";
+mysqli_affected_rows;
