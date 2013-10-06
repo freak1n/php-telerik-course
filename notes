@@ -1,4 +1,6 @@
 move_uploaded_file()
 scandir()
+pathinfo
+
 
 
