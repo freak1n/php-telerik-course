@@ -22,7 +22,7 @@ if (!$q)
 
 // INSERT
 $input = mysqli_real_escape_string($connection, 'Peter');
-$q = mysqli_query($connection,"INSERT INTO first_table (username) VALUES ('Peter')");;
+$q = mysqli_query($connection,"INSERT INTO first_table (username) VALUES ('Peter')");
 if ($q) 
 {
 	echo 'okey';

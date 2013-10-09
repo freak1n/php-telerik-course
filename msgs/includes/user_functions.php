@@ -8,7 +8,6 @@ function check_user_exist($user)
 
 	$user = trim($user);
 	
-
 	$stmt = mysqli_prepare($connection, "SELECT * FROM users WHERE username=? LIMIT 1");
 
 	/* bind parameters for markers */
