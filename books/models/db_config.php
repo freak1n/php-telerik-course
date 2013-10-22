@@ -1,9 +1,10 @@
-<?php 
+<?php
 
-$connection = mysqli_connect('localhost', 'root', '', 'books');
-if ( ! $connection) 
+$connection = mysqli_connect('localhost', 'root', 'root', 'books');
+if ( ! $connection)
 {
 	echo 'Connection is not valid';
 }
 
-mysqli_query($connection, 'SET NAMES UTF8');
+$connection->set_charset('UTF8');
+// mysqli_query($connection, 'SET NAMES UTF8');

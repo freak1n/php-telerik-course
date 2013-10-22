@@ -1,16 +1,16 @@
-<?php 
-	$page_title = 'Нов автор'; 
+<?php
+	$page_title = 'Нов автор';
 	require_once 'includes/header.php';
 	require_once 'models/authors_functions.php';
 
 ?>
 <a href="index.php">Книги</a>
 
-<?php 
-	if (isset($_POST['submit_new_author'])) 
+<?php
+	if (isset($_POST['submit_new_author']))
 	{
 		$new_author_name = trim($_POST['author_name']);
-		if (mb_strlen($new_author_name) < 3)  
+		if (mb_strlen($new_author_name) < 3)
 		{
 			$post_error['author_name'] = 'Името на автора трябва да е поне 3 символа';
 		}
@@ -25,7 +25,7 @@
 	}
 ?>
 <form method="POST" action="">
-	Автор: 
+	Автор:
 	<input type="text" name="author_name" />
 	<input type="submit" name="submit_new_author" value="Добави" />
 	<?= isset($post_error['author_name']) ? $post_error['author_name'] : '' ?>
