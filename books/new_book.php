@@ -1,18 +1,18 @@
-<?php 
-	$page_title = 'Нова книга'; 
+<?php
+	$page_title = 'Нова книга';
 	require_once 'includes/header.php';
 	require_once 'models/books_functions.php';
 	require_once 'models/authors_functions.php';
 ?>
 <a href="index.php">Книги</a><br />
 
-<?php 
-	if (isset($_POST['submit_new_book'])) 
+<?php
+	if (isset($_POST['submit_new_book']))
 	{
 		$new_book_name = trim($_POST['book_name']);
 		$new_book_authors = isset($_POST['authors']) ? $_POST['authors'] : array();
 
-		if (mb_strlen($new_book_name) < 3)  
+		if (mb_strlen($new_book_name) < 3)
 		{
 			$post_error['book_name'] = 'Името на книгата трябва да е поне 3 символа';
 		}
@@ -26,20 +26,21 @@
 			{
 				echo "Успешно добавена книга <strong>" . $new_book_name . "</strong>";
 			}
-			
+
 		}
 	}
 ?>
 <form method="POST" action="">
-	Книга: 
+	Книга:
 	<input type="text" name="book_name" />
 	<?= isset($post_error['book_name']) ? $post_error['book_name'] : '' ?><br />
-	
+
+	<!-- Get all authors and puts in select -->
 	<?php $all_authors = get_all_authors(); ?>
 	<select name="authors[]" style="height: 200px" multiple>
 		<?php foreach ($all_authors as $author_id => $author_name) : ?>
 			<option value="<?= $author_id ?>"><?= $author_name ?></option>
-		<?php endforeach ?>	
+		<?php endforeach ?>
 	</select>
 	<br />
 	<?= isset($post_error['authors']) ? $post_error['authors'] : '' ?>
