@@ -43,6 +43,9 @@ function get_all_authors()
 	$query = "SELECT *
 			FROM authors";
 	$result = $connection->query($query);
+	if ($connection->error)
+		return FALSE;
+
 	$authors = array();
 	while ($row = $result->fetch_assoc())
 	{

@@ -31,7 +31,14 @@
 	<?= isset($post_error['author_name']) ? $post_error['author_name'] : '' ?>
 </form>
 
-<?php $all_authors = get_all_authors(); ?>
+<!-- Get all authors and puts in select -->
+<?php
+	$all_authors = get_all_authors();
+	if ($all_authors === FALSE)
+	{
+		echo 'Грешка';
+	}
+?>
 <table>
 	<thead>
 		<tr>
