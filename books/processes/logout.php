@@ -1,6 +1,4 @@
 <?php 
-
 session_start();
-$_SESSION['is_logged'] = FALSE;
-$_SESSION['current_user'] = '';
+session_destroy();
 header('Location: ../index.php');
