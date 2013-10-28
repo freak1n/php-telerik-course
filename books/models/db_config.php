@@ -1,6 +1,6 @@
 <?php
 
-$connection = mysqli_connect('localhost', 'root', 'root', 'books');
+$connection = mysqli_connect('localhost', 'root', '', 'books');
 if ( ! $connection)
 {
 	echo 'Connection is not valid';

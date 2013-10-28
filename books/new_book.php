@@ -17,10 +17,16 @@
 		{
 			$post_error['book_name'] = 'Името на книгата трябва да е поне 3 символа';
 		}
+		
 		if (empty($new_book_authors))
 		{
-			$post_error['authors'] = 'Трябва да изберете автори на книгата';
+			$post_error['authors']['empty_msg'] = 'Трябва да изберете автори на книгата';
 		}
+		else if ( ! is_author_ids_exist($new_book_authors)) 
+		{
+			$post_error['authors']['invalid_ids'] = 'Невалидни автори';
+		}
+		
 		if (count($post_error) <= 0)
 		{
 			if (create_new_book($new_book_name, $new_book_authors))
@@ -52,7 +58,11 @@
 		<?php endforeach ?>
 	</select>
 	<br />
-	<?= isset($post_error['authors']) ? $post_error['authors'] : '' ?>
+	<?php if (isset($post_error['authors'])) : ?>
+		<?php foreach ($post_error['authors'] as $key => $msg) {
+			echo $msg . '<br />';
+		} ?>
+	<?php endif ?>
 	<br />
 	<input type="submit" name="submit_new_book" value="Добави" />
 </form>

@@ -2,8 +2,10 @@
 	$page_title = 'Home';
 	require_once 'includes/header.php';
 	require_once 'models/books_functions.php';
-
 ?>
+
+<?php require_once 'includes/user_actions.php' ?>
+
 	<a href="new_book.php">Нова книга</a> |
 	<a href="new_author.php">Нов автор</a>
 <?php

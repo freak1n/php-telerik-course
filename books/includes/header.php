@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php date_default_timezone_set('Europe/Sofia'); ?>
 <?php require_once 'includes/vars.php'; ?>
 <!DOCTYPE html>

@@ -6,8 +6,8 @@ function get_all_books()
 	global $connection;
 	$query = "SELECT *
 			FROM books
-			LEFT JOIN books_authors ON books.book_id = books_authors.book_id
-			LEFT JOIN authors ON books_authors.author_id = authors.author_id";
+			INNER JOIN books_authors ON books.book_id = books_authors.book_id
+			INNER JOIN authors ON books_authors.author_id = authors.author_id";
 	$result = $connection->query($query);
 
 	$books = array();
@@ -56,6 +56,12 @@ function get_all_books_by_author_id($author_id)
            		FROM books_authors
            		WHERE books_authors.author_id = $author_id)";
 
+/*	$query = "SELECT * FROM books_authors as ba
+			INNER JOIN books as b ON ba.book_id = b.book_id
+			INNER JOIN books_authors as bba ON bba.book_id = ba.book_id
+			INNER JOIN authors as a ON ba.author_id = a.author_id
+			WHERE ba.author_id = $author_id";
+*/
 	$result = $connection->query($query);
 	$books = array();
 	while ($row = $result->fetch_assoc())
