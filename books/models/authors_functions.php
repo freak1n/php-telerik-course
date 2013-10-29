@@ -28,7 +28,7 @@ function is_author_exists($author_name)
 
 function is_author_ids_exist($authors_ids = array())
 {
-	if ( ! is_array($authors_ids)) 
+	if ( ! is_array($authors_ids))
 	{
 		return false;
 	}
@@ -37,7 +37,7 @@ function is_author_ids_exist($authors_ids = array())
 	$authors_ids_values = implode($authors_ids, ', ');
 	$query = "SELECT * FROM authors WHERE author_id IN (" . $authors_ids_values . ")";
 	$result = $connection->query($query);
-	if (count($authors_ids) > $result->num_rows) 
+	if (count($authors_ids) > $result->num_rows)
 	{
 		return false;
 	}

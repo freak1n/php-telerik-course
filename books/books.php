@@ -32,9 +32,9 @@
 	</thead>
 	<tbody>
 		<?php if ( ! empty($books)): ?>
-			<?php foreach ($books as $book_name => $book_info) : ?>
+			<?php foreach ($books as $book_id => $book_info) : ?>
 				<tr>
-					<td><?= $book_name ?></td>
+					<td><a href="book.php?book_id=<?= $book_id ?>"><?= $book_info['name'] ?></a></td>
 					<td>
 						<?php foreach ($book_info['authors'] as $author_id => $author_name) : ?>
 						<a href="books.php?author_id=<?= $author_id ?>"><?= $author_name ?></a> |

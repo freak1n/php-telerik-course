@@ -13,7 +13,9 @@ function get_all_books()
 	$books = array();
 	while ($row = $result->fetch_assoc())
 	{
-		$books[$row['book_title']]['authors'][$row['author_id']] =  $row['author_name'];
+		// $books[$row['book_title']]['authors'][$row['author_id']] =  $row['author_name'];
+		$books[$row['book_id']]['name'] = $row['book_title'];
+		$books[$row['book_id']]['authors'][$row['author_id']] = $row['author_name'];
 	}
 
 	return $books;
@@ -46,7 +48,7 @@ function create_new_book($book_name, $authors = array())
 function get_all_books_by_author_id($author_id)
 {
 	global $connection;
-	$connection->real_escape_string($author_id);
+	$author_id = $connection->real_escape_string($author_id);
 	$query = "SELECT books.book_id, books.book_title, authors.author_id, authors.author_name
 			FROM books
 			INNER JOIN books_authors ON books.book_id = books_authors.book_id
@@ -66,8 +68,39 @@ function get_all_books_by_author_id($author_id)
 	$books = array();
 	while ($row = $result->fetch_assoc())
 	{
-		$books[$row['book_title']]['authors'][$row['author_id']] =  $row['author_name'];
+		$books[$row['book_id']]['name'] = $row['book_title'];
+		$books[$row['book_id']]['authors'][$row['author_id']] = $row['author_name'];
 	}
 
 	return $books;
+}
+
+function get_book_info_by_id($id)
+{
+	if ( ! is_numeric($id))
+	{
+		return false;
+	}
+
+	global $connection;
+
+	$book_id = trim($id);
+
+	$query = "SELECT books.book_id, books.book_title, authors.author_id, authors.author_name FROM books
+			LEFT JOIN books_authors ON books_authors.book_id = books.book_id
+			LEFT JOIN authors ON books_authors.author_id = authors.author_id
+			WHERE books.book_id = $book_id";
+
+	$result = $connection->query($query);
+
+	$book = array();
+
+	while ($row = $result->fetch_assoc())
+	{
+		$book['id'] = $row['book_id'];
+		$book['book_title'] = $row['book_title'];
+		$book['authors'][$row['author_id']] = $row['author_name'];
+	}
+
+	return $book;
 }

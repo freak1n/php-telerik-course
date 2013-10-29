@@ -1,13 +1,13 @@
 <?php
 
-require_once('db_config.php'); 
+require_once('db_config.php');
 
 function check_user_exist($user)
 {
 	global $connection;
 
 	$user = trim($user);
-	
+
 	$stmt = mysqli_prepare($connection, "SELECT * FROM users WHERE username=? LIMIT 1");
 
 	/* bind parameters for markers */
@@ -20,7 +20,7 @@ function check_user_exist($user)
 
 	/* close statement */
     mysqli_stmt_close($stmt);
-    
+
 	return $is_exist;
 }
 
@@ -30,8 +30,8 @@ function register_user($username, $password)
 	$stmt = mysqli_prepare($connection, "INSERT INTO users (username, password) VALUES (?, ?)");
 
 	mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-	
-	mysqli_stmt_execute($stmt);	
+
+	mysqli_stmt_execute($stmt);
 
 	mysqli_stmt_close($stmt);
 
