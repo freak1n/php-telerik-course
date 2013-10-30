@@ -55,3 +55,15 @@ function check_user_credentials($credentials = array())
 
 	return $is_exist;
 }
+
+function get_user_id_by_usermame($username)
+{
+	global $connection;
+
+	$username = $connection->real_escape_string($username);
+
+	$query = "SELECT id FROM users WHERE username = $username LIMIT 1";
+	$result = $connection->query($query);
+	var_dump($result->num_rows);
+
+}

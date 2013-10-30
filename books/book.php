@@ -44,5 +44,9 @@
 	<?php endif ?>
 </div>
 
-<textarea placeholder="Добави коментар" rows="3" cols="20"></textarea>
+<?php if (isset($_SESSION['logged_in']) AND $_SESSION['logged_in']): ?>
+	<textarea id="add-comment-ta" data-book-id="<?= $book['id'] ?>" data-user-name="<?= $_SESSION['username'] ?>" placeholder="Добави коментар" rows="3" cols="40"></textarea>
+<?php else: ?>
+	<h4>Трябва да влезете за дапишете коментари</h4>
+<?php endif ?>
 <?php require_once 'includes/footer.php'; ?>

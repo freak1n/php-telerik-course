@@ -31,3 +31,8 @@ function get_comments_by_book_id($book_id)
 	}
 	return $comments;
 }
+
+function add_comment($comment_text, $book_id, $user_id)
+{
+
+}
