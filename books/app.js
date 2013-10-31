@@ -6,20 +6,27 @@ $(document).ready(function() {
 				return false;
 			}
 			var book_id = $(this).data('book-id');
-			var user_id = $(this).data('user-name');
-			console.log(user_id);
+			var username_provided = $(this).data('username');
 			$.ajax({
 				url: 'processes/add_comment.php',
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					username: user_id,
+					username: username_provided,
 					book_id: book_id,
 					comment_text: comment_text
 				},
 				complete: function (response) {
+						var html =
+						'<div class="comment-container">' +
+							'<strong>' + username_provided + ' написа:</strong>' +
+							'<div>'+ comment_text +'</div>' +
+						'</div>';
+						$('#comments-conatainer').append(html);
+						$('#add-comment-ta').val('');
+						$('#nobody-comment').remove();
+					}
 
-				}
 			});
 		}
 	});

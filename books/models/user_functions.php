@@ -56,14 +56,19 @@ function check_user_credentials($credentials = array())
 	return $is_exist;
 }
 
-function get_user_id_by_usermame($username)
+function get_user_id_by_usermame($username_prov)
 {
 	global $connection;
 
-	$username = $connection->real_escape_string($username);
+	$username_prov = $connection->real_escape_string($username_prov);
 
-	$query = "SELECT id FROM users WHERE username = $username LIMIT 1";
+	$query = "SELECT id FROM users WHERE username = '$username_prov'";
+
 	$result = $connection->query($query);
-	var_dump($result->num_rows);
-
+	$user_id = $result->fetch_assoc()['id'];
+	if ( ! $connection->error OR ! $user_id)
+	{
+		return $user_id;
+	}
+	return false;
 }

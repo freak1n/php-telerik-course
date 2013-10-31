@@ -30,7 +30,7 @@
 </div>
 
 <?php $comments = get_comments_by_book_id($book['id']); ?>
-<div>
+<div id="comments-conatainer">
 	<h3>Коментари:</h3>
 	<?php if (count($comments) > 0): ?>
 		<?php foreach ($comments as $key): ?>
@@ -40,12 +40,12 @@
 			</div>
 		<?php endforeach ?>
 	<?php else: ?>
-	<p>Никой не е писал коментари за тази книга</p>
+	<p id="nobody-comment">Никой не е писал коментари за тази книга</p>
 	<?php endif ?>
 </div>
 
 <?php if (isset($_SESSION['logged_in']) AND $_SESSION['logged_in']): ?>
-	<textarea id="add-comment-ta" data-book-id="<?= $book['id'] ?>" data-user-name="<?= $_SESSION['username'] ?>" placeholder="Добави коментар" rows="3" cols="40"></textarea>
+	<textarea id="add-comment-ta" data-book-id="<?= $book['id'] ?>" data-username="<?= $_SESSION['username'] ?>" placeholder="Добави коментар" rows="3" cols="40"></textarea>
 <?php else: ?>
 	<h4>Трябва да влезете за дапишете коментари</h4>
 <?php endif ?>
