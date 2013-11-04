@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 29, 2013 at 07:42 PM
--- Server version: 5.5.31
--- PHP Version: 5.4.19
+-- Хост: localhost
+-- Време на генериране: 
+-- Версия на сървъра: 5.6.12-log
+-- Версия на PHP: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `books`
+-- БД: `books`
 --
 CREATE DATABASE IF NOT EXISTS `books` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `books`;
@@ -25,56 +25,82 @@ USE `books`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `authors`
+-- Структура на таблица `authors`
 --
 
 CREATE TABLE IF NOT EXISTS `authors` (
   `author_id` int(11) NOT NULL AUTO_INCREMENT,
   `author_name` varchar(250) NOT NULL,
   PRIMARY KEY (`author_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 --
--- Dumping data for table `authors`
+-- Схема на данните от таблица `authors`
 --
 
 INSERT INTO `authors` (`author_id`, `author_name`) VALUES
-(11, 'Явчо'),
-(10, 'Здравко'),
-(9, 'Pesho'),
-(8, 'fgddfsgsdf'),
-(7, '1321ds');
+(1, 'Симеон Радев'),
+(2, 'Ричард Бандлър'),
+(3, 'Джон Ла Вал'),
+(4, 'Иван Иванов'),
+(5, 'Иван Иванов'),
+(6, 'Георги Петров'),
+(7, 'Георги Петров'),
+(8, 'Жоро Иванов бее'),
+(9, 'Явор Михайлов'),
+(10, 'Георги Иванов Гонзо'),
+(11, 'Деда ми'),
+(12, 'Гошо от почивка бе брат'),
+(13, 'dasdasdsa'),
+(14, 'dasdas'),
+(15, 'ffff'),
+(16, 'fdds'),
+(17, 'gdgsdf');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books`
+-- Структура на таблица `books`
 --
 
 CREATE TABLE IF NOT EXISTS `books` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `book_title` varchar(250) NOT NULL,
   PRIMARY KEY (`book_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
--- Dumping data for table `books`
+-- Схема на данните от таблица `books`
 --
 
 INSERT INTO `books` (`book_id`, `book_title`) VALUES
-(1, 'Смоляновци'),
-(2, 'dsadas'),
-(3, 'ddsadasdas'),
-(4, 'sdfsadf'),
-(5, '123'),
-(6, 'dsadsadas'),
-(7, 'dsadsa'),
-(8, 'Руби');
+(1, 'Убеждаване и въздействие'),
+(2, 'Македония и българското възраждане'),
+(7, 'Нотата'),
+(5, 'Зайко Байко'),
+(6, 'Присънче бе брат'),
+(8, 'Добренгиа'),
+(9, 'Добре ли е'),
+(10, 'Айде вече'),
+(11, 'ДААА'),
+(12, 'dasdasas'),
+(13, 'dasdasas'),
+(14, 'dsadas'),
+(15, 'dsadas'),
+(16, 'dsadas'),
+(17, 'sdg'),
+(18, 'dasdas'),
+(19, 'dasdsa'),
+(20, 'dsadas'),
+(21, 'dasdasdas'),
+(22, 'dsadas'),
+(23, 'дадада'),
+(24, 'ddsaaa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books_authors`
+-- Структура на таблица `books_authors`
 --
 
 CREATE TABLE IF NOT EXISTS `books_authors` (
@@ -85,64 +111,88 @@ CREATE TABLE IF NOT EXISTS `books_authors` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `books_authors`
+-- Схема на данните от таблица `books_authors`
 --
 
 INSERT INTO `books_authors` (`book_id`, `author_id`) VALUES
-(1, 1),
-(2, 7),
-(3, 7),
-(4, 8),
-(5, 8),
-(5, 7),
-(6, 8),
-(6, 7),
-(7, 9),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 2),
+(5, 9),
+(5, 10),
+(6, 1),
+(6, 9),
+(7, 1),
+(7, 3),
 (7, 8),
+(7, 9),
+(8, 1),
+(8, 4),
+(8, 8),
 (8, 11),
-(8, 10);
+(9, 4),
+(9, 7),
+(10, 3),
+(10, 4),
+(10, 7),
+(11, 5),
+(11, 12),
+(12, 7),
+(12, 9),
+(13, 7),
+(13, 9),
+(14, 2),
+(14, 4),
+(14, 6),
+(15, 2),
+(15, 4),
+(15, 6),
+(16, 3),
+(16, 7),
+(16, 11),
+(17, 5),
+(18, 7),
+(18, 10),
+(18, 12),
+(19, 6),
+(19, 9),
+(19, 13),
+(20, 6),
+(20, 11),
+(21, 3),
+(21, 6),
+(21, 8),
+(22, 5),
+(22, 8),
+(23, 1),
+(23, 4),
+(24, 3),
+(24, 9);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
---
-
-CREATE TABLE IF NOT EXISTS `comments` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  `content` varchar(100) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `book_id` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `content`, `user_id`, `book_id`) VALUES
-(1, 'Много добра книжка', 1, 2),
-(2, 'Става, да', 1, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
+-- Структура на таблица `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `id` int(11) NOT NULL DEFAULT '0',
+  `username` varchar(25) NOT NULL,
+  `password` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Схема на данните от таблица `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'yavcho', '12345');
+(1, 'pesho', 'taina'),
+(2, 'goshko', 'taina2'),
+(0, 'yavcho', '12345'),
+(0, 'gotiniq12345', 'gotiniq12345'),
+(0, 'peshoo', 'pesho123'),
+(0, '12345', '12345');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

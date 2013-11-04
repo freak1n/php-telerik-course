@@ -2,4 +2,7 @@ bcrypt
 password_hash
 password_compat - library
 
-<?php  ?>
+<?php 
+	$p = md5('Здрастии');
+	var_dump($p);
+?>
