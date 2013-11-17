@@ -6,7 +6,7 @@
 	<meta charset='UTF-8'>
 </head>
 <body>
-	<div style="widht: 200px; height: 150px; border: 1px solid green; float: left">
+	<div style="width: 200px; height: 150px; border: 1px solid green; float: left">
 		<?php  
 		include $data['header'];
 		?>
